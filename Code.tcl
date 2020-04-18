@@ -1,14 +1,17 @@
 set ns [new Simulator]
+
+#For output on network animator
 set namfile [ open out.nam w ]
 $ns namtrace-all $namfile
 
-#Enable dynamic routing
+#Enable dynamic routing (Using Distance Vector Algorithm)
 $ns rtproto DV
 
 for {set i 0} {$i < 14} {incr i} {
 	set n($i) [$ns node]
 }
 
+#Defining Topology
 $ns duplex-link $n(0) $n(2) 4Mb 10ms SFQ #stochastic fair queueing
 $ns duplex-link $n(1) $n(2) 4Mb 10ms SFQ
 $ns duplex-link $n(2) $n(3) 3Mb 10ms SFQ
